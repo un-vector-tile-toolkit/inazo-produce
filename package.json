@@ -9,6 +9,7 @@
     "better-queue": "^3.8.10",
     "config": "^3.2.2",
     "glob": "^7.1.4",
-    "hjson": "^3.1.2"
+    "hjson": "^3.1.2",
+    "json-text-sequence": "^0.1.1"
   }
 }
