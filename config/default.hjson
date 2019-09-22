@@ -1,0 +1,5 @@
+{
+  concurrent: 2
+  srcGlob: ../geojsons-euroglobalmap/x??
+}
+
