@@ -8,12 +8,14 @@ module.exports = (f) => {
   let minzoom = 8
   switch (layer) {
     case 'ba010':
-      minzoom = 4
+    case 'xx500':
+      minzoom = 2
       break
-    case 'fa000':
+    case 'fa000': // polbndl
+      if (f.properties.bst !== 1) return null
       switch (f.properties.use) {
         case 23:
-          minzoom = 6
+          minzoom = 5
           break
         case 26:
           minzoom = 7
@@ -22,15 +24,12 @@ module.exports = (f) => {
           minzoom = 8
       }
       break
-    case 'an010':
-      minzoom = 6
+    case 'an010': // railroad
+      minzoom = 7
       break
-    case 'ap030':
+    case 'ap030': // road
       switch (f.properties.rtt) {
         case 14:
-          minzoom = 6 
-          break
-        case 15:
           minzoom = 7
           break
         default:

@@ -13,7 +13,7 @@ const tippecanoe = spawn('tippecanoe', [
   '--no-feature-limit',
   '--no-tile-size-limit',
   '--force',
-  '--minimum-zoom=4',
+  '--minimum-zoom=2',
   '--maximum-zoom=8',
   '--base-zoom=8',
   '--hilbert',
