@@ -29,6 +29,9 @@ module.exports = (f) => {
       break
     case 'ap030': // road
       switch (f.properties.rtt) {
+        case 16:
+          minzoom = 6
+          break
         case 14:
           minzoom = 7
           break
