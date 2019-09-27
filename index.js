@@ -27,15 +27,29 @@ const tippecanoe = spawn('tippecanoe', [
 })
 
 const queue = new Queue((path, cb) => {
+  let pausing = false
+  const source = fs.createReadStream(path)
   const parser = new Parser()
     .on('data', json => {
       let f = modify(json)
-      if (f) tippecanoe.stdin.write(JSON.stringify(f))
+      if (f) {
+        if (tippecanoe.stdin.write(JSON.stringify(f))) {
+        } else {
+          source.pause()
+          if (!pausing) {
+            tippecanoe.stdin.once('drain', () => {
+              source.resume()
+              pausing = false
+            })
+            pausing = true
+          }
+        }
+      }
     })
     .on('finish', () => {
       cb()
     })
-  fs.createReadStream(path).pipe(parser)
+  source.pipe(parser)
 }, {
   concurrent: concurrent
 })
